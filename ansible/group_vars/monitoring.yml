@@ -1,0 +1,3 @@
+prometheus_version: latest
+grafana_version: latest
+blackbox_version: latest

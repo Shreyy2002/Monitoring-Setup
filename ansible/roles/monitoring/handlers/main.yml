@@ -1,0 +1,24 @@
+- name: restart_prometheus
+  systemd:
+    name: prometheus
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+# - name: reload_prometheus
+#   uri:
+#     url: http://localhost/-/reload
+#     method: POST
+#     status_code: 200
+#   become: yes
+#   become_user: prometheus
+- name: reload_prometheus
+  uri:
+    url: http://localhost:9090/-/reload
+    method: POST
+    status_code: 200
+
+- name: Restart Grafana
+  systemd:
+    name: grafana-server
+    state: restarted
+

@@ -1,0 +1,14 @@
+# - name: Setup Monitoring Server
+#   hosts: aws_ec2
+#   become: true
+#   roles:
+#     - monitoring
+
+- name: Setup Monitoring and Target Servers
+  hosts: aws_ec2
+  become: true
+
+  roles:
+    - { role: monitoring, when: "'monitoring-instance' in tags.Name" }
+    - { role: target, when: "'target-instance' in tags.Name" }
+
