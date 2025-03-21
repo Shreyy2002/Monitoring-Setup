@@ -1,0 +1,15 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1  # Change as per your region
+filters:
+  instance-state-name: running  # Only fetch running instances
+  tag:Name:
+    - "target-instance"
+    - "monitoring-instance"
+keyed_groups:
+  - key: tags.Name
+hostnames:
+  - private-ip-address  # Use private IP for internal communication
+compose:
+  ansible_host: public_ip_address  # If using public IP, otherwise change to private_ip_address
+  tags.Name: tags.Name  # Ensures tags.Name is available
