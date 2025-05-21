@@ -1,2 +1,2 @@
 # tool
-this is a commit
+this is a commit.
